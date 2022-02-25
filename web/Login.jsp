@@ -12,16 +12,28 @@
         <title>JSP Page</title>
     </head>
     <body><form action="Login" method="post">
-            <h1> Manchester United </h1>
+         <style>
+h1 {text-align: center;}
+p {text-align: center;}
+div {text-align: center;}
+</style>
+        </div>
+    </div>
+    <h1> Manchester United </h1>
+    <hr>
             <div>
-                Username: <input name="user"/>
+                <h3> Username </h3>
+                <input name="user"/>
             </div>
             <div>
-                Password: <input type="password" name="pass"/>
+                <h3> Password </h3><input type="password" name="pass"/>
             </div>
+            <p></p>
             <div>
                 <input type="submit" name="login" value="Login" />
             </div>
+            <hr/>
         </form>
+        
     </body>
 </html>
