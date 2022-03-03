@@ -5,21 +5,24 @@
  */
 package Controll;
 
+import dao.DAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import entity.Players;
 
 /**
  *
  * @author HP
  */
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+public class LoginControll extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,7 +41,12 @@ public class Login extends HttpServlet {
             String u = request.getParameter("user");
             String p = request.getParameter("pass");
             if (u != null && p != null) {
-                request.getRequestDispatcher("Welcome").forward(request, response);
+              //  out.print("welcom " + u + "!");
+                DAO db = new DAO() {
+                };
+                ArrayList<Players> players = db.getAll();
+                request.setAttribute("players", players);
+                request.getRequestDispatcher("List.jsp").forward(request, response);
             } else {
                 response.sendRedirect("Login.jsp");
             }
