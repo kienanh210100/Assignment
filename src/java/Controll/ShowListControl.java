@@ -6,22 +6,22 @@
 package Controll;
 
 import dao.DAO;
+import entity.Players;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.Players;
-import java.util.List;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class LoginControll extends HttpServlet {
+@WebServlet(name = "ShowListControl", urlPatterns = {"/ShowListControl"})
+public class ShowListControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,22 +34,10 @@ public class LoginControll extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String u = request.getParameter("user");
-            String p = request.getParameter("pass");
-            if (u != null && p != null) {
-              //  out.print("welcom " + u + "!");
-                out.println("<h1>Login Success, welcome " + u + "!</h1>");
-                out.print("");
-                out.print("<form action=\"ShowListControl\" method=\"POST\">");
-                out.print("<button type=\"submit\">Show List</button>");
-                out.print("</form>");            
-            } else {
-                response.sendRedirect("Login.jsp");
-            }
-        }
+        DAO db = new DAO();
+        List<Players> players = db.getAllPlayers();
+        request.setAttribute("players", players);
+        request.getRequestDispatcher("List.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -79,7 +67,6 @@ public class LoginControll extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-       
     }
 
     /**

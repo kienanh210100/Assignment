@@ -61,7 +61,6 @@ public class DAO {
                 p.setNation(rs.getString("nation"));
                 p.setNumber(rs.getInt("number"));
                 pls.add(p);
-
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);

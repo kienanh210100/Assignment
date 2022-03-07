@@ -3,8 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import entity.Players;
 import java.util.ArrayList;
+import entity.Players;
 
 public final class List_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
@@ -47,21 +47,19 @@ public final class List_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title>List of Players</title>\n");
-      out.write("    ");
+      out.write("        <title> List Players of Manchester United </title>\n");
+      out.write("        ");
 
         ArrayList<Players> players = (ArrayList<Players>) request.getAttribute("players");
     
       out.write("\n");
-      out.write("</head>\n");
-      out.write("<h1>");
-      out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${sessionScope.players.Name}", java.lang.String.class, (PageContext)_jspx_page_context, null));
-      out.write("</h1>\n");
-      out.write("<body>\n");
+      out.write("    </head>\n");
+      out.write("    <body>\n");
       out.write("    <table border=\"1\">\n");
       out.write("        <tr>\n");
       out.write("            <th>Name</th>\n");
@@ -92,7 +90,7 @@ public final class List_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.print(p.getNumber());
       out.write("</td> \n");
       out.write("            <td>\n");
-      out.write("                <a href=\"Update?id=");
+      out.write("                <a href=\"update?id=");
       out.print( p.getNumber());
       out.write("\">Update</a>\n");
       out.write("                <a href=\"Delete?id=");
@@ -104,7 +102,6 @@ public final class List_jsp extends org.apache.jasper.runtime.HttpJspBase
 }
       out.write("\n");
       out.write("    </table>\n");
-      out.write("\n");
       out.write("</body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

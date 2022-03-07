@@ -13,10 +13,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title> List Players of Manchester United </title>
         <%
-        ArrayList<Players> players = (ArrayList<Players>) request.getAttribute("players");
-    %>
+            ArrayList<Players> players = (ArrayList<Players>) request.getAttribute("players");
+        %>
     </head>
-    <body>
     <table border="1">
         <tr>
             <th>Name</th>
@@ -24,22 +23,22 @@
             <th>Year</th>
             <th>Nation</th>
             <th>Number</th>
-            <th></th>
+            <th>Update</th>
+            <th>Delete</th>
         </tr>
         <% for (Players p : players) {
         %>
         <tr>
-            <td><%=p.getName()%></td> 
-            <td><%=p.getPosition()%></td>
-            <td><%=p.getYear()%></td>
-            <td><%=p.getNation()%></td>
-            <td><%=p.getNumber()%></td> 
-            <td>
-                <a href="update?id=<%= p.getNumber()%>">Update</a>
-                <a href="Delete?id=<%= p.getNumber()%>" onclick="return confirm('Are you want to Delete?');">Delete</a>
-            </td>
+            <td><%= p.getName()%></td> 
+            <td><%= p.getPosition()%></td>
+            <td><%= p.getYear()%></td>
+            <td><%= p.getNation()%></td>
+            <td><%= p.getNumber()%></td> 
+            <td><a href="update?id=<%=p.getNumber()%>">Update</a></td>
+            <td><a href="Delete?id=<%=p.getNumber()%>">Delete</a></td>
         </tr>
         <%}%>
     </table>
-</body>
+
+
 </html>
