@@ -16,6 +16,8 @@
             ArrayList<Players> players = (ArrayList<Players>) request.getAttribute("players");
         %>
     </head>
+    <center>
+    <h1>List Players of Manchester United 2021-2022</h1>
     <table border="1">
         <tr>
             <th>Name</th>
@@ -35,10 +37,13 @@
             <td><%= p.getNation()%></td>
             <td><%= p.getNumber()%></td> 
             <td><a href="update?id=<%=p.getNumber()%>">Update</a></td>
-            <td><a href="Delete?id=<%=p.getNumber()%>">Delete</a></td>
+            <td><a href="Delete?id=<%=p.getNumber()%>"onclick="return confirm('Do you want to delete?')">Delete</a></td>
         </tr>
         <%}%>
     </table>
-
+    <form action="LogoutControll" method="POST">
+    <td><a href="Logout"onclick="return confirm('Do you want to Log out?')">Log Out</a></td>
+    </form>
+</center>
 
 </html>
