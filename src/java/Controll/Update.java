@@ -5,6 +5,8 @@
  */
 package Controll;
 
+import dao.DAO;
+import entity.Players;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,8 +19,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "LogoutControll", urlPatterns = {"/LogoutControll"})
-public class LogoutControll extends HttpServlet {
+@WebServlet(name = "Update", urlPatterns = {"/Update"})
+public class Update extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,7 +36,12 @@ public class LogoutControll extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           request.getRequestDispatcher("Login.jsp").forward(request, response);
+            String number = request.getParameter("number");
+            DAO db = new DAO();
+            int num = Integer.parseInt(number);
+            Players players = db.getPlayer(num);
+            request.setAttribute("student", players);
+            request.getRequestDispatcher("Update.jsp").forward(request, response);
         }
     }
 

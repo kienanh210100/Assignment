@@ -49,7 +49,6 @@ public class DAO {
     public ArrayList<Players> getAll() {
         ArrayList<Players> pls = new ArrayList<>();
         try {
-            // String sql = "SELECT [id],[name],[gender],[dob],[phonenumber] FROM [Student]";
             String sql = "Select * from player";
             PreparedStatement statement = conn.prepareStatement(sql);
             ResultSet rs = statement.executeQuery();
@@ -130,7 +129,6 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     public static void main(String[] args) {
         DAO dao = new DAO();
         List<Players> lst = dao.getAllPlayers();

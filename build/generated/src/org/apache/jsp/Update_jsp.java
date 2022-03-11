@@ -3,8 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import entity.Players;
 
-public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class Update_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -44,41 +45,45 @@ public final class Login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>JSP Page</title>\n");
-      out.write("    </head>\n");
-      out.write("    <table>\n");
-      out.write("    <body><form action=\"Login\" method=\"post\">\n");
-      out.write("            <style>\n");
-      out.write("                h1 {text-align: center;}\n");
-      out.write("                p {text-align: center;}\n");
-      out.write("                div {text-align: center;}\n");
-      out.write("            </style>\n");
-      out.write("  \n");
-      out.write("    <h1> Manchester United </h1>\n");
-      out.write("    <hr>\n");
-      out.write("    <div>\n");
-      out.write("        <h3> Username </h3>\n");
-      out.write("        <input name=\"user\"/>\n");
-      out.write("    </div>\n");
-      out.write("    <div>\n");
-      out.write("        <h3> Password </h3><input type=\"password\" name=\"pass\"/>\n");
-      out.write("    </div>\n");
-      out.write("    <p></p>\n");
-      out.write("    <div>\n");
-      out.write("        <input type=\"submit\" name=\"login\" value=\"Login\" />\n");
-      out.write("        <form action=\"Register\" method=\"post\">\n");
-      out.write("    <input type=\"submit\" name=\"register\" value=\"Register\" />\n");
-      out.write("</form>\n");
-      out.write("    </div>\n");
-      out.write("    <hr/>\n");
-      out.write("</form>\n");
+      out.write("         ");
+
+            Players p = (Players) request.getAttribute("player");
+        
       out.write("\n");
-      out.write("    </table>\n");
-      out.write("</body>\n");
+      out.write("    </head>\n");
+      out.write("    <body>\n");
+      out.write("        <form action=\"Update\" method=\"POST\">\n");
+      out.write("            Name ");
+      out.print(p.getName());
+      out.write(" \n");
+      out.write("            <input type=\"hidden\" value=\"");
+      out.print(p.getName());
+      out.write("\" name=\"name\"/>\n");
+      out.write("            <br/>\n");
+      out.write("            Position: <input type=\"text\" value=\"");
+      out.print(p.getPosition());
+      out.write("\" name=\"position\" />\n");
+      out.write("            <br/>\n");
+      out.write("            Year: <input type=\"text\" value=\"");
+      out.print(p.getYear());
+      out.write("\" name=\"year\" />\n");
+      out.write("            <br/> \n");
+      out.write("            Nation: <input type=\"text\" value=\"");
+      out.print(p.getNation());
+      out.write("\" name=\"nation\"/>\n");
+      out.write("            Number: <input type=\"text\" value=\"");
+      out.print(p.getNumber());
+      out.write("\" name=\"number\" />\n");
+      out.write("            <br/>           \n");
+      out.write("            <input type=\"submit\" value=\"Save\"/>\n");
+      out.write("        </form>\n");
+      out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
