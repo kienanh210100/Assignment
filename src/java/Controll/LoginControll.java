@@ -6,6 +6,7 @@
 package Controll;
 
 import dao.DAO;
+import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -37,15 +38,16 @@ public class LoginControll extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String u = request.getParameter("user");
-            String p = request.getParameter("pass");
-            if (u != null && p != null) {
-              //  out.print("welcom " + u + "!");
+            String u = request.getParameter("username");
+            String p = request.getParameter("password");
+            DAO db = new DAO();
+            Account a = db.getAccount(u, p);
+            if (a != null) {
                 out.println("<h1>Login Success, welcome " + u + "!</h1>");
                 out.print("");
                 out.print("<form action=\"ShowListControl\" method=\"POST\">");
                 out.print("<button type=\"submit\">Show List</button>");
-                out.print("</form>");            
+                out.print("</form>");
             } else {
                 response.sendRedirect("Login.jsp");
             }
@@ -79,7 +81,7 @@ public class LoginControll extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-       
+
     }
 
     /**

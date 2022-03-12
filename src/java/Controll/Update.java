@@ -36,12 +36,20 @@ public class Update extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            String number = request.getParameter("number");
-            DAO db = new DAO();
-            int num = Integer.parseInt(number);
-            Players players = db.getPlayer(num);
-            request.setAttribute("student", players);
-            request.getRequestDispatcher("Update.jsp").forward(request, response);
+//            String number = request.getParameter("id");
+//            DAO db = new DAO();
+//            int num = Integer.parseInt(number);
+//            Players players = db.getPlayer(num);
+//            request.setAttribute("player", players);
+//            request.getRequestDispatcher("Update.jsp").forward(request, response);
+//
+//            String name = request.getParameter("name");
+//            String position = request.getParameter("position");
+//            int year = Integer.parseInt(request.getParameter("year"));
+//            String nation = request.getParameter("nation");
+//            db.updatePlayer(name, position, year, nation, num);
+//            response.sendRedirect("ShowListControl");
+
         }
     }
 
@@ -57,7 +65,12 @@ public class Update extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String number = request.getParameter("id");
+        DAO db = new DAO();
+        int num = Integer.parseInt(number);
+        Players players = db.getPlayer(num);
+        request.setAttribute("player", players);
+        request.getRequestDispatcher("Update.jsp").forward(request, response);
     }
 
     /**
@@ -71,7 +84,15 @@ public class Update extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String number = request.getParameter("number");
+        int num = Integer.parseInt(number);
+        String name = request.getParameter("name");
+        String position = request.getParameter("position");
+        int year = Integer.parseInt(request.getParameter("year"));
+        String nation = request.getParameter("nation");
+        DAO db = new DAO();
+        db.updatePlayer(name, position, year, nation, num);
+        response.sendRedirect("ShowListControl");
     }
 
     /**

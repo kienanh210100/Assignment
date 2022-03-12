@@ -106,9 +106,7 @@ public final class List_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <td><a href=\"Logout\"onclick=\"return confirm('Do you want to Log out?')\">Log Out</a></td>\n");
       out.write("    </form>\n");
       out.write("</center>\n");
-      out.write(" <div>\n");
-      out.write("                <input type=\"submit\" name=\"login\" value=\"Login\" />\n");
-      out.write("            </div>\n");
+      out.write(" \n");
       out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

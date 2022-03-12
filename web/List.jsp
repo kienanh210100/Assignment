@@ -36,7 +36,7 @@
             <td><%= p.getYear()%></td>
             <td><%= p.getNation()%></td>
             <td><%= p.getNumber()%></td> 
-            <td><a href="update?id=<%=p.getNumber()%>">Update</a></td>
+            <td><a href="Update?id=<%=p.getNumber()%>">Update</a></td>
             <td><a href="Delete?id=<%=p.getNumber()%>"onclick="return confirm('Do you want to delete?')">Delete</a></td>
         </tr>
         <%}%>

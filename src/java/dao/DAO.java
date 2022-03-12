@@ -6,6 +6,7 @@
 package dao;
 
 import Context.DBContext;
+import entity.Account;
 import entity.Players;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -70,6 +71,7 @@ public class DAO {
     public Players getPlayer(int number) {
         try {
             String sql = "SELECT name,position,year,nation,number FROM player WHERE number = ?";
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, number);
             ResultSet rs = statement.executeQuery();
@@ -83,7 +85,7 @@ public class DAO {
                 return p;
             }
 
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -92,6 +94,7 @@ public class DAO {
     public void insertPlayer(String name, String position, int year, String nation, int number) {
         try {
             String sql = "INSERT INTO Player(name,position,year,nation,number) values(?,?,?,?,?)";
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, name);
             statement.setString(2, position);
@@ -99,14 +102,15 @@ public class DAO {
             statement.setString(4, nation);
             statement.setInt(5, number);
             statement.executeUpdate();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void updatePlayer(String name, String position, int year, String nation, int number) {
         try {
-            String sql = "UPDATE Player SET name=?, position=?, year=?, nation=?, number=? WHERE number = ?";
+            String sql = " UPDATE player SET name=?, position=?, year=?, nation=? WHERE number = ?";
+            conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, name);
             statement.setString(2, position);
@@ -114,9 +118,27 @@ public class DAO {
             statement.setString(4, nation);
             statement.setInt(5, number);
             statement.executeUpdate();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public Account getAccount(String username, String password) {
+        try {
+            String query = "select * from account where username = ? and password = ?";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Account a = new Account(rs.getString(1), rs.getString(2));
+                return a;
+            }
+        } catch (Exception e) {
+        }
+
+        return null;
     }
 
     public void deletePlayer(int number) {
@@ -129,11 +151,10 @@ public class DAO {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public static void main(String[] args) {
+
+    public static void main(String[] args) throws Exception {
         DAO dao = new DAO();
-        List<Players> lst = dao.getAllPlayers();
-        for (Players p : lst) {
-            System.out.println(p);
-        }
+        Players p = dao.getPlayer(1);
+        System.out.println(p);
     }
 }

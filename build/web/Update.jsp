@@ -20,7 +20,8 @@
             Name <%=p.getName()%> 
             <input type="hidden" value="<%=p.getName()%>" name="name"/>
             <br/>
-            Position: <input type="text" value="<%=p.getPosition()%>" name="position" />
+            Position: 
+            <input type="text" value="<%=p.getPosition()%>" name="position" />
             <br/>
             Year: <input type="text" value="<%=p.getYear()%>" name="year" />
             <br/> 
