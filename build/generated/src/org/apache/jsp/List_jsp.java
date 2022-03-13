@@ -3,6 +3,7 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import entity.Account;
 import java.util.ArrayList;
 import entity.Players;
 
@@ -48,6 +49,7 @@ public final class List_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
+      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
@@ -55,58 +57,65 @@ public final class List_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <title> List Players of Manchester United </title>\n");
       out.write("        ");
 
-            ArrayList<Players> players = (ArrayList<Players>) request.getAttribute("players");
+            HttpSession session1 = request.getSession();
+            ArrayList<Players> players = (ArrayList<Players>) session1.getAttribute("players");
+            ArrayList<Account> account = (ArrayList<Account>) request.getAttribute("account");
         
       out.write("\n");
       out.write("    </head>\n");
       out.write("    <center>\n");
-      out.write("    <h1>List Players of Manchester United 2021-2022</h1>\n");
-      out.write("    <table border=\"1\">\n");
-      out.write("        <tr>\n");
-      out.write("            <th>Name</th>\n");
-      out.write("            <th>Position</th>\n");
-      out.write("            <th>Year</th>\n");
-      out.write("            <th>Nation</th>\n");
-      out.write("            <th>Number</th>\n");
-      out.write("            <th>Update</th>\n");
-      out.write("            <th>Delete</th>\n");
-      out.write("        </tr>\n");
-      out.write("        ");
+      out.write("        <h1>List Players of Manchester United 2021-2022</h1>\n");
+      out.write("        <table border=\"1\">\n");
+      out.write("            <tr>\n");
+      out.write("                <th>ID</th>\n");
+      out.write("                <th>Name</th>\n");
+      out.write("                <th>Position</th>\n");
+      out.write("                <th>Year</th>\n");
+      out.write("                <th>Nation</th>\n");
+      out.write("                <th>Number</th>\n");
+      out.write("                <th>Update</th>\n");
+      out.write("                <th>Delete</th>\n");
+      out.write("            </tr>\n");
+      out.write("            ");
  for (Players p : players) {
-        
+            
       out.write("\n");
-      out.write("        <tr>\n");
-      out.write("            <td>");
+      out.write("            <tr>\n");
+      out.write("                <td>");
+      out.print( p.getId());
+      out.write("</td> \n");
+      out.write("                <td>");
       out.print( p.getName());
       out.write("</td> \n");
-      out.write("            <td>");
+      out.write("                <td>");
       out.print( p.getPosition());
       out.write("</td>\n");
-      out.write("            <td>");
+      out.write("                <td>");
       out.print( p.getYear());
       out.write("</td>\n");
-      out.write("            <td>");
+      out.write("                <td>");
       out.print( p.getNation());
       out.write("</td>\n");
-      out.write("            <td>");
+      out.write("                <td>");
       out.print( p.getNumber());
       out.write("</td> \n");
-      out.write("            <td><a href=\"Update?id=");
-      out.print(p.getNumber());
+      out.write("                <td><a href=\"Update?id=");
+      out.print(p.getId());
       out.write("\">Update</a></td>\n");
-      out.write("            <td><a href=\"Delete?id=");
-      out.print(p.getNumber());
+      out.write("                <td><a href=\"DeleteControl?id=");
+      out.print(p.getId());
       out.write("\"onclick=\"return confirm('Do you want to delete?')\">Delete</a></td>\n");
-      out.write("        </tr>\n");
-      out.write("        ");
+      out.write("            </tr>\n");
+      out.write("            ");
 }
       out.write("\n");
-      out.write("    </table>\n");
-      out.write("    <form action=\"LogoutControll\" method=\"POST\">\n");
-      out.write("    <td><a href=\"Logout\"onclick=\"return confirm('Do you want to Log out?')\">Log Out</a></td>\n");
-      out.write("    </form>\n");
-      out.write("</center>\n");
-      out.write(" \n");
+      out.write("        </table>\n");
+      out.write("        <form action=\"LogoutControl\" method=\"POST\">\n");
+      out.write("            <td><a href=\"LogoutControl\"onclick=\"return confirm('Do you want to Log out?')\">Log Out</a></td>\n");
+      out.write("        </form>\n");
+      out.write("\n");
+      out.write("    </center>\n");
+      out.write("\n");
       out.write("</html>");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){

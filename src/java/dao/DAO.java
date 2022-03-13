@@ -70,13 +70,14 @@ public class DAO {
 
     public Players getPlayer(int id) {
         try {
-            String sql = "SELECT name,postion,year,nation,number FROM player WHERE id = ?";
+            String sql = "SELECT id,name,postion,year,nation,number FROM player WHERE id = ?";
             conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 Players p = new Players();
+                p.setId(rs.getInt("id"));
                 p.setName(rs.getString("name"));
                 p.setPosition(rs.getString("postion"));
                 p.setYear(rs.getInt("year"));
@@ -107,9 +108,9 @@ public class DAO {
         }
     }
 
-    public void updatePlayer(String name, String position, int year, String nation, int number) {
+    public void updatePlayer(String name, String position, int year, String nation, int number, int id) {
         try {
-            String sql = " UPDATE player SET name=?, postion=?, year=?, nation=? ,number =? WHERE name = ?";
+            String sql = " UPDATE player SET name=?, postion=?, year=?, nation=? ,number =? WHERE id = ?";
             conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, name);
@@ -117,7 +118,7 @@ public class DAO {
             statement.setInt(3, year);
             statement.setString(4, nation);
             statement.setInt(5, number);
-            statement.setString(6, name);
+            statement.setInt(6, id);
             statement.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -141,13 +142,13 @@ public class DAO {
 
         return null;
     }
+
     public void deletePlayer(int id) {
         try {
             String sql = "DELETE Player WHERE id=?";
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            ps.executeUpdate();
             PreparedStatement statement = conn.prepareStatement(sql);
             //statement.setInt(1, number);
             //statement.setInt(1, id);
@@ -161,7 +162,7 @@ public class DAO {
 
     public static void main(String[] args) throws Exception {
         DAO dao = new DAO();
-//        dao.updatePlayer("Haha", "GK", 1596, "U", 1);
-//        System.out.println(p);
+        dao.updatePlayer("Haha", "GK", 1596, "U", 1, 1);
+
     }
 }

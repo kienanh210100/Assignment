@@ -54,7 +54,7 @@ public class DeleteControl extends HttpServlet {
             int id = Integer.parseInt(request.getParameter("id"));
             DAO db = new DAO();
             db.deletePlayer(id);
-            response.sendRedirect("List.jsp");
+            response.sendRedirect("ShowListControl");
         }
 
     }

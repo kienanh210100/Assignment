@@ -79,7 +79,7 @@ public class Players {
 
     @Override
     public String toString() {
-        return "Players{" + "name=" + name + ", position=" + position + ", year=" + year + ", nation=" + nation + ", number=" + number + '}';
+        return "Players{" + "id=" + id + ", name=" + name + ", position=" + position + ", year=" + year + ", nation=" + nation + ", number=" + number + '}';
     }
 
 }

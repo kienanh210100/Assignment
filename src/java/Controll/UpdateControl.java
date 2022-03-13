@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -75,6 +76,8 @@ public class UpdateControl extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println(id);
         String number = request.getParameter("number");
         int num = Integer.parseInt(number);
         String name = request.getParameter("name");
@@ -82,7 +85,7 @@ public class UpdateControl extends HttpServlet {
         int year = Integer.parseInt(request.getParameter("year"));
         String nation = request.getParameter("nation");
         DAO db = new DAO();
-        db.updatePlayer(name, position, year, nation, num);
+        db.updatePlayer(name, position, year, nation, num, id);
         response.sendRedirect("ShowListControl");
     }
 

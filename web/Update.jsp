@@ -16,47 +16,48 @@
         %>
     </head>
     <center>
-    <table>
-        
-        <body>
-            <form action="Update" method="POST">
-              
-                <h1> Update information of <%=p.getName()%> </h1>
-                <tr>
-                    <td>Name:<td/>
-                    <td> 
-                        <input type="text" value="<%=p.getName()%>" name="name"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Position:<td/>
-                    <td> 
-                        <input type="text" value="<%=p.getPosition()%>" name="position" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Year:<td/>
-                    <td>  
-                        <input type="text" value="<%=p.getYear()%>" name="year" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nation: <td/>
+        <table>
+
+            <body>
+                <form action="Update?id=<%=p.getId()%>" method="POST">
+
+                    <h1> Update information of <%=p.getName()%> </h1>
+                    
+                    <tr>
+                        <td>Name:<td/>
+                        <td> 
+                            <input type="text" value="<%=p.getName()%>" name="name"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Position:<td/>
+                        <td> 
+                            <input type="text" value="<%=p.getPosition()%>" name="position" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Year:<td/>
+                        <td>  
+                            <input type="text" value="<%=p.getYear()%>" name="year" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Nation: <td/>
+                        <td>
+                            <input type="text" value="<%=p.getNation()%>" name="nation"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Number: <td/>
+                        <td> <input type="text" value="<%=p.getNumber()%>" name="number" />
+                        </td>
+                    </tr>
                     <td>
-                        <input type="text" value="<%=p.getNation()%>" name="nation"/>
+                        <input type="submit" value="Save"/>
                     </td>
-                </tr>
-                <tr>
-                    <td>Number: <td/>
-                    <td> <input type="text" value="<%=p.getNumber()%>" name="number" />
-                    </td>
-                </tr>
-                <td>
-                    <input type="submit" value="Save"/>
-                </td>
-                
-            </form>  
-        </body>
-    </table>
-</center>
+
+                </form>  
+            </body>
+        </table>
+    </center>
 </html>
