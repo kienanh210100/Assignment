@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author HP
  */
 @WebServlet(name = "Update", urlPatterns = {"/Update"})
-public class Update extends HttpServlet {
+public class UpdateControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,7 +41,7 @@ public class Update extends HttpServlet {
 //            int num = Integer.parseInt(number);
 //            Players players = db.getPlayer(num);
 //            request.setAttribute("player", players);
-//            request.getRequestDispatcher("Update.jsp").forward(request, response);
+//            request.getRequestDispatcher("UpdateControl.jsp").forward(request, response);
 //
 //            String name = request.getParameter("name");
 //            String position = request.getParameter("position");
@@ -65,22 +65,13 @@ public class Update extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String number = request.getParameter("id");
         DAO db = new DAO();
-        int num = Integer.parseInt(number);
-        Players players = db.getPlayer(num);
+        int id = Integer.parseInt(request.getParameter("id"));
+        Players players = db.getPlayer(id);
         request.setAttribute("player", players);
         request.getRequestDispatcher("Update.jsp").forward(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

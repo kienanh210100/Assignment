@@ -6,7 +6,6 @@
 package Controll;
 
 import dao.DAO;
-import entity.Account;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -14,15 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import entity.Players;
-import java.util.List;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "Login", urlPatterns = {"/Login"})
-public class LoginControll extends HttpServlet {
+@WebServlet(name = "DeleteControl", urlPatterns = {"/DeleteControl"})
+public class DeleteControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,20 +34,7 @@ public class LoginControll extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            String u = request.getParameter("username");
-            String p = request.getParameter("password");
-            DAO db = new DAO();
-            Account a = db.getAccount(u, p);
-            if (a != null) {
-                out.println("<h1>Login Success, welcome " + u + "!</h1>");
-                out.print("");
-                out.print("<form action=\"ShowListControl\" method=\"POST\">");
-                out.print("<button type=\"submit\">Show List</button>");
-                out.print("</form>");
-            } else {
-                response.sendRedirect("Login.jsp");
-            }
+
         }
     }
 
@@ -66,7 +50,13 @@ public class LoginControll extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            DAO db = new DAO();
+            db.deletePlayer(id);
+            response.sendRedirect("List.jsp");
+        }
+
     }
 
     /**
@@ -81,7 +71,6 @@ public class LoginControll extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
     }
 
     /**

@@ -36,11 +36,11 @@ public class DAO {
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-                lst.add(new Players(rs.getString(1),
-                        rs.getString(2),
-                        rs.getInt(3),
-                        rs.getString(4),
-                        rs.getInt(5)));
+                lst.add(new Players(rs.getInt(1), rs.getString(2),
+                        rs.getString(3),
+                        rs.getInt(4),
+                        rs.getString(5),
+                        rs.getInt(6)));
             }
         } catch (Exception e) {
         }
@@ -68,17 +68,17 @@ public class DAO {
         return pls;
     }
 
-    public Players getPlayer(int number) {
+    public Players getPlayer(int id) {
         try {
-            String sql = "SELECT name,position,year,nation,number FROM player WHERE number = ?";
+            String sql = "SELECT name,postion,year,nation,number FROM player WHERE id = ?";
             conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, number);
+            statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 Players p = new Players();
                 p.setName(rs.getString("name"));
-                p.setPosition(rs.getString("position"));
+                p.setPosition(rs.getString("postion"));
                 p.setYear(rs.getInt("year"));
                 p.setNation(rs.getString("nation"));
                 p.setNumber(rs.getInt("number"));
@@ -93,7 +93,7 @@ public class DAO {
 
     public void insertPlayer(String name, String position, int year, String nation, int number) {
         try {
-            String sql = "INSERT INTO Player(name,position,year,nation,number) values(?,?,?,?,?)";
+            String sql = "INSERT INTO Player(name,postion,year,nation,number) values(?,?,?,?,?)";
             conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, name);
@@ -109,7 +109,7 @@ public class DAO {
 
     public void updatePlayer(String name, String position, int year, String nation, int number) {
         try {
-            String sql = " UPDATE player SET name=?, position=?, year=?, nation=? WHERE number = ?";
+            String sql = " UPDATE player SET name=?, postion=?, year=?, nation=? ,number =? WHERE name = ?";
             conn = new DBContext().getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setString(1, name);
@@ -117,6 +117,7 @@ public class DAO {
             statement.setInt(3, year);
             statement.setString(4, nation);
             statement.setInt(5, number);
+            statement.setString(6, name);
             statement.executeUpdate();
         } catch (Exception ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -140,21 +141,27 @@ public class DAO {
 
         return null;
     }
-
-    public void deletePlayer(int number) {
+    public void deletePlayer(int id) {
         try {
-            String sql = "DELETE Player WHERE number=?";
+            String sql = "DELETE Player WHERE id=?";
+            conn = new DBContext().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, number);
+            //statement.setInt(1, number);
+            //statement.setInt(1, id);
             statement.executeUpdate();
         } catch (SQLException ex) {
+            Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(DAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public static void main(String[] args) throws Exception {
         DAO dao = new DAO();
-        Players p = dao.getPlayer(1);
-        System.out.println(p);
+//        dao.updatePlayer("Haha", "GK", 1596, "U", 1);
+//        System.out.println(p);
     }
 }

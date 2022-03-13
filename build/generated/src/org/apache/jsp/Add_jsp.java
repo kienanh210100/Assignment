@@ -3,10 +3,9 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
-import java.util.ArrayList;
 import entity.Players;
 
-public final class List_jsp extends org.apache.jasper.runtime.HttpJspBase
+public final class Add_jsp extends org.apache.jasper.runtime.HttpJspBase
     implements org.apache.jasper.runtime.JspSourceDependent {
 
   private static final JspFactory _jspxFactory = JspFactory.getDefaultFactory();
@@ -47,67 +46,36 @@ public final class List_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("\n");
       out.write("\n");
-      out.write("\n");
       out.write("<!DOCTYPE html>\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
-      out.write("        <title> List Players of Manchester United </title>\n");
       out.write("        ");
 
-            ArrayList<Players> players = (ArrayList<Players>) request.getAttribute("players");
+            Players p = (Players) request.getAttribute("player");
         
       out.write("\n");
       out.write("    </head>\n");
-      out.write("    <center>\n");
-      out.write("    <h1>List Players of Manchester United 2021-2022</h1>\n");
-      out.write("    <table border=\"1\">\n");
-      out.write("        <tr>\n");
-      out.write("            <th>Name</th>\n");
-      out.write("            <th>Position</th>\n");
-      out.write("            <th>Year</th>\n");
-      out.write("            <th>Nation</th>\n");
-      out.write("            <th>Number</th>\n");
-      out.write("            <th>Update</th>\n");
-      out.write("            <th>Delete</th>\n");
-      out.write("        </tr>\n");
-      out.write("        ");
- for (Players p : players) {
-        
-      out.write("\n");
-      out.write("        <tr>\n");
-      out.write("            <td>");
-      out.print( p.getName());
-      out.write("</td> \n");
-      out.write("            <td>");
-      out.print( p.getPosition());
-      out.write("</td>\n");
-      out.write("            <td>");
-      out.print( p.getYear());
-      out.write("</td>\n");
-      out.write("            <td>");
-      out.print( p.getNation());
-      out.write("</td>\n");
-      out.write("            <td>");
-      out.print( p.getNumber());
-      out.write("</td> \n");
-      out.write("            <td><a href=\"Update?id=");
-      out.print(p.getNumber());
-      out.write("\">Update</a></td>\n");
-      out.write("            <td><a href=\"Delete?id=");
-      out.print(p.getNumber());
-      out.write("\"onclick=\"return confirm('Do you want to delete?')\">Delete</a></td>\n");
-      out.write("        </tr>\n");
-      out.write("        ");
-}
-      out.write("\n");
-      out.write("    </table>\n");
-      out.write("    <form action=\"LogoutControll\" method=\"POST\">\n");
-      out.write("    <td><a href=\"Logout\"onclick=\"return confirm('Do you want to Log out?')\">Log Out</a></td>\n");
-      out.write("    </form>\n");
-      out.write("</center>\n");
-      out.write(" \n");
-      out.write("</html>");
+      out.write("    <body>\n");
+      out.write("        <form action=\"\" method=\"POST\">\n");
+      out.write("            Add new player\n");
+      out.write("            <br/>\n");
+      out.write("            Name:\n");
+      out.write("            <input type=\"text\" value=\"\" name=\"name\"/>\n");
+      out.write("            <br/>\n");
+      out.write("            Position: \n");
+      out.write("            <input type=\"text\" value=\"\" name=\"position\" />\n");
+      out.write("            <br/>\n");
+      out.write("            Year: <input type=\"text\" value=\"\" name=\"year\" />\n");
+      out.write("            <br/> \n");
+      out.write("            Nation: <input type=\"text\" value=\"\" name=\"nation\"/>\n");
+      out.write("            <br/>\n");
+      out.write("            Number: <input type=\"text\" value=\"\" name=\"number\" />\n");
+      out.write("            <br/>           \n");
+      out.write("            <input type=\"submit\" value=\"Save\"/>\n");
+      out.write("        </form>\n");
+      out.write("    </body>\n");
+      out.write("</html>\n");
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
         out = _jspx_out;

@@ -4,6 +4,7 @@
     Author     : HP
 --%>
 
+<%@page import="entity.Account"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="entity.Players"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,6 +15,7 @@
         <title> List Players of Manchester United </title>
         <%
             ArrayList<Players> players = (ArrayList<Players>) request.getAttribute("players");
+            ArrayList<Account> account = (ArrayList<Account>) request.getAttribute("account");
         %>
     </head>
     <center>
@@ -36,14 +38,15 @@
             <td><%= p.getYear()%></td>
             <td><%= p.getNation()%></td>
             <td><%= p.getNumber()%></td> 
-            <td><a href="Update?id=<%=p.getNumber()%>">Update</a></td>
-            <td><a href="Delete?id=<%=p.getNumber()%>"onclick="return confirm('Do you want to delete?')">Delete</a></td>
+            <td><a href="Update?id=<%=p.getId()%>">Update</a></td>
+            <td><a href="DeleteControl?id=<%=p.getId()%>"onclick="return confirm('Do you want to delete?')">Delete</a></td>
         </tr>
         <%}%>
     </table>
-    <form action="LogoutControll" method="POST">
-    <td><a href="Logout"onclick="return confirm('Do you want to Log out?')">Log Out</a></td>
+    <form action="LogoutControl" method="POST">
+    <td><a href="LogoutControl"onclick="return confirm('Do you want to Log out?')">Log Out</a></td>
     </form>
+   
 </center>
  
 </html>

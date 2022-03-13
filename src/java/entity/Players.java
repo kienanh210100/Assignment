@@ -11,6 +11,7 @@ package entity;
  */
 public class Players {
 
+    private int id;
     private String name, position;
     private int year;
     private String nation;
@@ -19,12 +20,21 @@ public class Players {
     public Players() {
     }
 
-    public Players(String name, String position, int year, String nation, int number) {
+    public Players(int id, String name, String position, int year, String nation, int number) {
+        this.id = id;
         this.name = name;
         this.position = position;
         this.year = year;
         this.nation = nation;
         this.number = number;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

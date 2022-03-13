@@ -5,11 +5,8 @@
  */
 package Controll;
 
-import dao.DAO;
-import entity.Players;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,8 +17,8 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "ShowListControl", urlPatterns = {"/ShowListControl"})
-public class ShowListControl extends HttpServlet {
+@WebServlet(name = "LogoutControl", urlPatterns = {"/LogoutControl"})
+public class LogoutControl extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,14 +31,12 @@ public class ShowListControl extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-        DAO db = new DAO();
-        List<Players> players = db.getAllPlayers();
-        request.setAttribute("players", players);
-        request.getRequestDispatcher("List.jsp").forward(request, response);
-        
+          request.getRequestDispatcher("Login.jsp").forward(request, response);
+        }
     }
-    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
