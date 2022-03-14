@@ -149,6 +149,7 @@ public class DAO {
             conn = new DBContext().getConnection();
             ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
+            ps.executeUpdate();
             PreparedStatement statement = conn.prepareStatement(sql);
             //statement.setInt(1, number);
             //statement.setInt(1, id);

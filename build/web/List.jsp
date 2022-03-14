@@ -22,7 +22,6 @@
         <h1>List Players of Manchester United 2021-2022</h1>
         <table border="1">
             <tr>
-                
                 <th>Name</th>
                 <th>Position</th>
                 <th>Year</th>
@@ -45,10 +44,10 @@
             </tr>
             <%}%>
         </table>
+        <a href="Create.jsp">Create new player</a>
         <form action="LogoutControl" method="POST">
             <td><a href="LogoutControl"onclick="return confirm('Do you want to Log out?')">Log Out</a></td>
         </form>
-
     </center>
 
 </html>
